@@ -1,4 +1,4 @@
-ts for the 0-add_integer.py script
+Tests for the 0-add_integer.py script
 =====================================
 >>> add_integer = __import__('0-add_integer').add_integer
 
