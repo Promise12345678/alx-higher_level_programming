@@ -1,30 +1,24 @@
 #!/usr/bin/python3
-# 5-text_indentation.py
-"""Defines a text-indentation function."""
-
+"""Module containing a function that separates sentences"""
 
 def text_indentation(text):
-    """Print text with two new lines after each '.', '?', and ':'.
-
-    Args:
-        text (string): The text to print.
-    Raises:
-        TypeError: If text is not a string.
-    """
-    if not isinstance(text, str):
+    """Separates sentences in a given piece of text"""
+    if type(text) is not str:
         raise TypeError("text must be a string")
-
-    c = 0
-    while c < len(text) and text[c] == ' ':
-        c += 1
-
-    while c < len(text):
-        print(text[c], end="")
-        if text[c] == "\n" or text[c] in ".?:":
-            if text[c] in ".?:":
-                print("\n")
-            c += 1
-            while c < len(text) and text[c] == ' ':
-                c += 1
-            continue
-        c += 1
+    end = 0
+    textlen = len(text)
+    while end < textlen:
+        start = end
+        while start < textlen and text[start] == ' ':
+            start += 1
+        end = start
+        while (end < textlen and text[end] != '.' and text[end] != ':' and
+               text[end] != '?'):
+            end += 1
+        if end < textlen:
+            end += 1
+        print(text[start:end], end="")
+        end -= 1
+        if text[end] == '.' or text[end] == '?' or text[end] == ':':
+            print("\n")
+        end += 1
